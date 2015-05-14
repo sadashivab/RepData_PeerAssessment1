@@ -72,7 +72,7 @@ Note that there are a number of days/intervals where there are missing values (c
 #### Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc. Create a new dataset that is equal to the original dataset but with the missing data filled in.
 - The strategy used is copying 5-minute interval average to cells with NA.
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 DataSetNew <- merge( MeanByInterval, DataSet, by="interval")
 for (i in 1:nrow(DataSetNew)) {
 	DataSetNew[i,"steps"] <- if (is.na(DataSetNew[i,"steps"])) { DataSetNew[i,"stepsinterval"]} else {DataSetNew[i,"steps"]}

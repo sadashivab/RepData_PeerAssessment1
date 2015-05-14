@@ -52,6 +52,12 @@ Note that there are a number of days/intervals where there are missing values (c
 - The strategy used is copying 5-minute interval average to cells with NA.
 
 
+```r
+DataSetNew <- merge( MeanByInterval, DataSet, by="interval")
+for (i in 1:nrow(DataSetNew)) {
+	DataSetNew[i,"steps"] <- if (is.na(DataSetNew[i,"steps"])) { DataSetNew[i,"stepsinterval"]} else {DataSetNew[i,"steps"]}
+	}
+```
 #### Make a histogram of the total number of steps taken each day
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
