@@ -14,7 +14,7 @@ The variables included in this dataset are:
 2. date: The date on which the measurement was taken in YYYY-MM-DD format and stored as date in the dataframe
 3. interval: Identifier for the 5-minute interval in which measurement was taken and stored as numeric in the dataframe
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 library(lattice)
 
 DataSet <- read.csv("activity.csv", sep=",", header=TRUE, stringsAsFactors=FALSE)
@@ -30,7 +30,7 @@ For this part of the assignment, the missing values in the dataset are ignored. 
 
 #### Make a histogram of the total number of steps taken each day
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 TotalByDay <- aggregate(DataSet[, "steps"], list(DataSet[,"date"]), sum, na.rm=TRUE) 
 colnames(TotalByDay) <- c("date", "stepsTotal")
 hist(TotalByDay$stepsTotal, breaks=40, ylim=c(0,12), xlim=c(0,25000), xlab="Total Steps per day", ylab="No of days", main="Distribution of total steps/day during Oct & Nov 2012", col="blue")
@@ -38,7 +38,7 @@ hist(TotalByDay$stepsTotal, breaks=40, ylim=c(0,12), xlim=c(0,25000), xlab="Tota
 
 #### Calculate and report the mean and median total number of steps taken per day
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 stepsTotalMean <- round(mean(TotalByDay$stepsTotal, na.rm=TRUE),2)  
 stepsTotalMedian <- median(TotalByDay$stepsTotal, na.rm=TRUE) 
 ```
@@ -50,7 +50,7 @@ stepsTotalMedian <- median(TotalByDay$stepsTotal, na.rm=TRUE)
 
 #### Time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 MeanByInterval <- aggregate(DataSet[, "steps"], list(DataSet[,"interval"]), mean, na.rm=TRUE) 
 colnames(MeanByInterval) <- c("interval", "stepsinterval")
 plot(MeanByInterval$interval, MeanByInterval$stepsinterval, type="l", ylim=c(0,210), xlim=c(0,2355), ylab="Steps per interval", xlab="Interval", main="Average steps/interval during Oct & Nov 2012", col="blue", axes=FALSE)
@@ -80,7 +80,7 @@ for (i in 1:nrow(DataSetNew)) {
 ```
 #### Make a histogram of the total number of steps taken each day
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 TotalByDayNew <- aggregate(DataSetNew[, "steps"], list(DataSet[,"date"]), sum, na.rm=TRUE) 
 colnames(TotalByDayNew) <- c("date", "stepsTotal")
 hist(TotalByDayNew$stepsTotal, breaks=40, ylim=c(0,20), xlim=c(0,50000), xlab="Total Steps per day", ylab="No of days", main="Distribution of total steps/day during Oct & Nov 2012 - after Imputing", col="green")
@@ -88,7 +88,7 @@ hist(TotalByDayNew$stepsTotal, breaks=40, ylim=c(0,20), xlim=c(0,50000), xlab="T
 
 #### Calculate and report the mean and median total number of steps taken per day. 
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 stepsTotalMeanNew <- round(mean(TotalByDayNew$stepsTotal, na.rm=TRUE),2)  
 stepsTotalMedianNew <- median(TotalByDayNew$stepsTotal, na.rm=TRUE) 
 ```
@@ -103,14 +103,14 @@ stepsTotalMedianNew <- median(TotalByDayNew$stepsTotal, na.rm=TRUE)
 ##### What is the impact of imputing missing data on the estimates of the total daily number of steps?
 - The summary statistics shown below indicate a more balanced distribution after imputing
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 summary(TotalByDay$stepsTotal)
 summary(TotalByDayNew$stepsTotal)
 ```
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 DataSet$WeekDay <- sapply(weekdays(DataSet$date,abbreviate = TRUE), switch, 
  "Mon" = "weekday",
  "Tue" =  "weekday",
